@@ -7,13 +7,8 @@ RSpec.describe WaldoScreen, type: :model do
     expect(subject).to be_valid
   end
 
-  it 'is not valid without a name' do
-    subject.name = nil;
-    expect(subject).to_not be_valid
-  end
-
-  it 'is not valid without an image_url' do
-    subject.image_url = nil;
-    expect(subject).to_not be_valid
+  describe 'validations' do
+    it { should validate_presence_of(:name) }
+    it { should validate_presence_of(:image_url) }
   end
 end
