@@ -9,6 +9,7 @@ RSpec.describe WaldoScreen, type: :model do
 
   describe 'associations' do
     it { should have_many(:scores) }
+    it { should have_many(:characters) }
   end
 
   describe 'validations' do
