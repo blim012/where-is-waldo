@@ -1,7 +1,7 @@
 class Api::V1::WaldoScreensController < ApplicationController
   def index
     @screens = WaldoScreen.all
-    render json: @screens
+    render json: @screens, include: ['scores']
   end
 
   def show
