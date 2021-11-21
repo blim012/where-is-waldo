@@ -22,6 +22,6 @@ class Api::V1::ScoresController < ApplicationController
   private
 
   def score_params
-    params.require(:score).permit(:seconds, :waldo_screen_id)
+    params.require(:score).permit(:seconds, :name, :waldo_screen_id)
   end
 end

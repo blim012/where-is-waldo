@@ -3,7 +3,7 @@
 
 WaldoScreen.create(name: 'test screen', image_url: '1.jpeg')
 
-Score.create(seconds: 30, waldo_screen_id: 1)
+Score.create(seconds: 30, name: 'bob', waldo_screen_id: 1)
 
 Character.create(name: 'Waldo', image_url: 'waldo.png')
 Character.create(name: 'Wenda', image_url: 'wenda.png')

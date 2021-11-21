@@ -7,5 +7,6 @@ RSpec.describe Score, type: :model do
 
   describe 'validations' do
     it { should validate_presence_of(:seconds) }
+    it { should validate_presence_of(:name) }
   end
 end
