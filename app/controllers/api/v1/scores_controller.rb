@@ -2,7 +2,7 @@ class Api::V1::ScoresController < ApplicationController
   protect_from_forgery with: :null_session
   
   def show
-    @scores = Score.find_by waldo_screen_id: params[:id]
+    @scores = Score.where(waldo_screen_id: params[:id]).order(:seconds)
     if @scores
       render json: @scores
     else
