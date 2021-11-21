@@ -10,16 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_21_045616) do
+ActiveRecord::Schema.define(version: 2021_11_21_051341) do
 
   create_table "characters", force: :cascade do |t|
     t.string "image_url"
-    t.decimal "x_pos"
-    t.decimal "y_pos"
-    t.integer "waldo_screen_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["waldo_screen_id"], name: "index_characters_on_waldo_screen_id"
   end
 
   create_table "positions", force: :cascade do |t|
@@ -48,7 +44,6 @@ ActiveRecord::Schema.define(version: 2021_11_21_045616) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "characters", "waldo_screens"
   add_foreign_key "positions", "characters"
   add_foreign_key "positions", "waldo_screens"
   add_foreign_key "scores", "waldo_screens"
