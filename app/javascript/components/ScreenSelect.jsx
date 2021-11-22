@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import uniqid from 'uniqid';
+import ScreenThumbnail from "./ScreenThumbnail";
 
 const ScreenSelect = () => {
   const [screens, setScreens] = useState(null);
@@ -26,10 +27,7 @@ const ScreenSelect = () => {
             {screens.map((screen) => {
               return (
                 <li className="screen-container" key={uniqid('screen-')}>
-                  <div className="screen-thumbnail">
-                    <p className="screen-name">{screen.name}</p>
-                    <img className="screen-image" src={require(`images/screens/${screen.image_url}`)} alt={screen.name}></img>
-                  </div>
+                  <ScreenThumbnail name={screen.name} image_url={screen.image_url} />
                   <ul className="screen-scores">
                     <h2 className="screen-score-header">Scores:</h2>
                     {screen.scores.map((score, index) => {
