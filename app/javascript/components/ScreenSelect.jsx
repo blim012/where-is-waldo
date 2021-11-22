@@ -28,7 +28,7 @@ const ScreenSelect = () => {
             {screens.map((screen) => {
               return (
                 <li className="screen-container" key={uniqid('screen-')}>
-                  <ScreenThumbnail name={screen.name} image_url={screen.image_url} />
+                  <ScreenThumbnail id={screen.id} name={screen.name} image_url={screen.image_url} />
                   <ScreenScores scores={screen.scores} />
                 </li>
               )
