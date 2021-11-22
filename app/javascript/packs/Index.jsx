@@ -5,6 +5,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import RouteSwitch from '../routers/RouteSwitch'
+import '../../assets/stylesheets/reset.css'
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
