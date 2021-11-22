@@ -1,0 +1,49 @@
+.screen-select {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.screen-container {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  border: 1px black solid;
+}
+
+.screen-thumbnail {
+  position: relative;
+  width: 600px;
+}
+
+.screen-thumbnail:hover {
+  cursor: pointer;
+}
+
+.screen-name {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  z-index: 9999;
+}
+
+.screen-image {
+  width: 100%;
+  opacity: 80%;
+}
+
+.screen-score-header {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.screen-scores {
+  border: 2px red solid;
+  width: 300px;
+  margin-left: 50px;
+  overflow: scroll;
+  white-space: nowrap;
+}
