@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import uniqid from 'uniqid';
 
 const ScreenSelect = () => {
   const [screens, setScreens] = useState(null);
@@ -24,7 +25,7 @@ const ScreenSelect = () => {
           <ul>
             {
               screens.map((screen) => {
-                return <li>{screen.name}</li>
+                return <li key={uniqid('screen-')}>{screen.name}</li>
               })
             }
           </ul>
