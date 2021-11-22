@@ -31,10 +31,11 @@ const ScreenSelect = () => {
                     <img className="screen-image" src={require(`images/screens/${screen.image_url}`)} alt={screen.name}></img>
                   </div>
                   <ul className="screen-scores">
-                    {screen.scores.map((score) => {
+                    <h2 className="screen-score-header">Scores:</h2>
+                    {screen.scores.map((score, index) => {
                       return (
                         <li key={uniqid('score-')}>
-                          <p className="score">{score.name}: {score.seconds}</p>
+                          <p className="score">#{index + 1} - {score.name}: {score.seconds}</p>
                         </li>
                       )
                     })}
