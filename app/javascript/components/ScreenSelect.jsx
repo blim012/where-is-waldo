@@ -27,7 +27,8 @@ const ScreenSelect = () => {
               return (
                 <li className="screen-container" key={uniqid('screen-')}>
                   <div className="screen-thumbnail">
-
+                    <p className="screen-name">{screen.name}</p>
+                    <img className="screen-image" src={require(`images/screens/${screen.image_url}`)} alt={screen.name}></img>
                   </div>
                   <ul className="screen-scores">
                     {screen.scores.map((score) => {
