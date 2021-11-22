@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ScreenSelect from "../components/ScreenSelect";
-import Game from "../components/Screen";
+import Game from "../components/Game";
 
 const RouteSwitch = (props) => {
   return (
