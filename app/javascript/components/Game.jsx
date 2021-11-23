@@ -21,7 +21,7 @@ const Game = (props) => {
       data.positions.forEach((position) => {
         let iconSrc = require(`images/characters/${position.character.image_url}`);
         iconsToSet[position.character.name] = iconSrc;
-        positionsToSet[position.character.name] = {x_pos: position.x_pos, y_pos: position.y_pos};
+        positionsToSet[position.character.name] = {x_pos: parseFloat(position.x_pos), y_pos: parseFloat(position.y_pos)};
       });
 
       setPositions(positionsToSet);
@@ -45,9 +45,15 @@ const Game = (props) => {
   }, [loaded, seconds]);
 
   const checkSelection = (character, xPercentage, yPercentage) => {
-    console.log('Character: ' + character);
-    console.log('xPercentage: ' + xPercentage);
-    console.log('yPercentage: ' + yPercentage);
+    const errorMargin = 0.03;
+    const upperRangeX = positions[character].x_pos + errorMargin;
+    const lowerRangeX = positions[character].x_pos - errorMargin;
+    const upperRangeY = positions[character].y_pos + errorMargin;
+    const lowerRangeY = positions[character].y_pos - errorMargin;
+    if((xPercentage <= upperRangeX && xPercentage >= lowerRangeX) &&
+       (yPercentage <= upperRangeY && yPercentage >= lowerRangeY)) {
+      console.log(`${character} has been found`);
+    }
   };
 
   return (
