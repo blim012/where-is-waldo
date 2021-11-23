@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 #game-screen {
   position: relative;
 }
@@ -8,8 +12,38 @@
 
 .dropdown {
   position: absolute;
+}
+
+.dropdown-rel-wrapper {
+  position: relative;
+}
+
+.crosshair {
+  position: absolute;
+  top: -25px;
+  left: -25px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.crosshair-border {
+  border: 2px solid black;
+}
+
+.crosshair-inner {
+  background-color: aquamarine;
+  opacity: 30%;
+}
+
+.dropdown-list {
   display: flex;
   flex-direction: column;
+  background-color: white;
+  padding: 1rem;
+  border: 2px solid black;
+  border-radius: 0.5rem;
+  mask-image: radial-gradient(circle at 0 0, transparent 0, transparent 25px, black 21px);
 }
 
 .dropdown-item {
