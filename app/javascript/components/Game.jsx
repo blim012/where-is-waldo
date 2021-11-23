@@ -44,6 +44,12 @@ const Game = (props) => {
     return () => clearInterval(interval);
   }, [loaded, seconds]);
 
+  const checkSelection = (character, xPercentage, yPercentage) => {
+    console.log('Character: ' + character);
+    console.log('xPercentage: ' + xPercentage);
+    console.log('yPercentage: ' + yPercentage);
+  };
+
   return (
     <div id="game">
       {
@@ -55,7 +61,7 @@ const Game = (props) => {
           <p>Seconds Elapsed: {seconds}</p>
           <button onClick={() => setLoaded(true)}>Start Time</button>
           <button onClick={() => setLoaded(false)}>Stop Time</button>
-          <Screen screen={screen} icons={icons} />
+          <Screen screen={screen} icons={icons} checkSelection={checkSelection}/>
         </div>
 
         :
