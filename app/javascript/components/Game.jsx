@@ -8,7 +8,7 @@ const Game = (props) => {
   const [loaded, setLoaded] = useState(false);
   const [positions, setPositions] = useState({});
   const [icons, setIcons] = useState({});
-  const [screen, setScreen] = useState([]);
+  const [screen, setScreen] = useState({});
 
   useEffect(() => {
     axios.get(`/api/v1/waldo_screens/${params.screen_id}`)
@@ -16,6 +16,7 @@ const Game = (props) => {
       let data = response.data;
       let positionsToSet = {};
       let iconsToSet = {};
+      let screenToSet = {id: data.id, name: data.name, image_url: require(`images/screens/${data.image_url}`)};
       data.positions.forEach((position) => {
         let iconSrc = require(`images/characters/${position.character.image_url}`);
         iconsToSet[position.character.name] = iconSrc;
@@ -24,6 +25,7 @@ const Game = (props) => {
 
       setPositions(positionsToSet);
       setIcons(iconsToSet);
+      setScreen(screenToSet);
     })
     .catch((error) => {
       // Catch error here
