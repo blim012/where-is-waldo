@@ -1,0 +1,25 @@
+#game-screen {
+  position: relative;
+}
+
+#screen {
+  max-width: 100%;
+}
+
+.dropdown {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-item {
+  display: flex;
+}
+
+.dropdown-item > img {
+  width: 50px;
+}
+
+.no-display {
+  display: none;
+}

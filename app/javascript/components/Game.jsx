@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
+import Screen from "./Screen";
 
 const Game = (props) => {
   const params = useParams();
@@ -8,7 +9,7 @@ const Game = (props) => {
   const [loaded, setLoaded] = useState(false);
   const [positions, setPositions] = useState({});
   const [icons, setIcons] = useState({});
-  const [screen, setScreen] = useState({});
+  const [screen, setScreen] = useState(null);
 
   useEffect(() => {
     axios.get(`/api/v1/waldo_screens/${params.screen_id}`)
@@ -44,12 +45,25 @@ const Game = (props) => {
   }, [loaded, seconds]);
 
   return (
-    <div>
-      <br /><br /><br />
-      <p>Game Screen {params.screen_id}</p>
-      <p>Seconds Elapsed: {seconds}</p>
-      <button onClick={() => setLoaded(true)}>Start Time</button>
-      <button onClick={() => setLoaded(false)}>Stop Time</button>
+    <div id="game">
+      {
+      screen
+        ?
+        <div>
+          <br /><br /><br />
+          <p>Game Screen {params.screen_id}</p>
+          <p>Seconds Elapsed: {seconds}</p>
+          <button onClick={() => setLoaded(true)}>Start Time</button>
+          <button onClick={() => setLoaded(false)}>Stop Time</button>
+          <Screen screen={screen} icons={icons} />
+        </div>
+
+        :
+        <div className="loading">
+              <br /><br />
+              Loading...
+        </div>
+      }
     </div>
   );
 };
