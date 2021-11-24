@@ -10,12 +10,24 @@ const Screen = (props) => {
   const handleDropDown = (e) => {
     if(win) return;
     let dropdown = document.querySelector('.dropdown');
+    let dropdownList = document.querySelector('.dropdown-list');
     let screen = document.querySelector('#screen');
-    if(!(dropdown && screen)) return;
+    if(!(dropdown && dropdownList && screen)) return;
     if(e.target === screen) {
-      dropdown.setAttribute('style', `top:${e.nativeEvent.offsetY}px;left:${e.nativeEvent.offsetX}px;`);
-      dropdown.setAttribute('data-x', e.nativeEvent.offsetX);
-      dropdown.setAttribute('data-y', e.nativeEvent.offsetY);
+      const clickOffsetY = e.nativeEvent.offsetY;
+      const clickOffsetX = e.nativeEvent.offsetX;
+      const [dropdownListOffsetX, 
+             dropdownListOffsetY, 
+             verticalBiteOrientation, 
+             horizontalBiteOrientation] 
+             = handleDropdownListOffset(clickOffsetX, clickOffsetY);
+      dropdown.setAttribute('style', `top:${clickOffsetY}px;left:${clickOffsetX}px;`);
+      dropdown.setAttribute('data-x', clickOffsetX);
+      dropdown.setAttribute('data-y', clickOffsetY);
+      dropdownList.setAttribute('style', 
+        `top:${dropdownListOffsetY}px;
+         left:${dropdownListOffsetX}px;
+         mask-image: radial-gradient(circle at ${verticalBiteOrientation} ${horizontalBiteOrientation}, transparent 0, transparent 25px, black 21px);`);
       dropdown.classList.toggle('no-display');
     }
     else {
@@ -23,6 +35,36 @@ const Screen = (props) => {
     }
   };
 
+  const handleDropdownListOffset = (clickOffsetX, clickOffsetY) => {
+    let dropdownList = document.querySelector('.dropdown-list');
+    if(dropdownList) {
+      let dropdownWidth = dropdownList.offsetWidth;
+      let dropdownHeight = dropdownList.offsetHeight;
+      const [xPercentage, yPercentage] = convertOffsetToPercent(clickOffsetX, clickOffsetY);
+      if(xPercentage < 0.5) { // Left half
+        if(yPercentage < 0.5) { // Top half
+          // Crosshair at top left
+          return [0, 0, 'top', 'left'];
+        }
+        else { // Bottom half
+          // Crosshair at bottom left
+          return [0, -dropdownHeight, 'bottom', 'left'];
+        }
+      }
+      else { // Right half
+        if(yPercentage < 0.5) { // Top half
+          // Crosshair at top right
+          return [-dropdownWidth, 0, 'top', 'right'];
+        }
+        else { // Bottom half
+          // Crosshair at bottom right
+          return [-dropdownWidth, -dropdownHeight, 'bottom', 'right'];
+        }
+      }
+    }
+  }
+
+  // TODO: refactor to use convertOffsetToPercent
   const handleSelection = (key) => {
     let dropdown = document.querySelector('.dropdown');
     let screen = document.querySelector('#screen');
@@ -33,6 +75,13 @@ const Screen = (props) => {
     let xPercentage = clickOffsetX / screen.offsetWidth;
     let yPercentage = clickOffsetY / screen.offsetHeight;
     checkSelection(key, xPercentage, yPercentage);
+  };
+
+  const convertOffsetToPercent = (clickOffsetX, clickOffsetY) => {
+    let screen = document.querySelector('#screen');
+    if(screen) {
+      return [clickOffsetX / screen.offsetWidth, clickOffsetY / screen.offsetHeight];
+    }
   };
 
   return (

@@ -41,12 +41,12 @@
 }
 
 .dropdown-list {
+  position: absolute;
   display: flex;
   flex-direction: column;
   background-color: white;
   border: 2px solid black;
   border-radius: 1rem;
-  mask-image: radial-gradient(circle at 0 0, transparent 0, transparent 25px, black 21px);
 }
 
 .dropdown-item {
@@ -79,7 +79,7 @@
 }
 
 .no-display {
-  display: none;
+  visibility: hidden;
 }
 
 #score-form {
