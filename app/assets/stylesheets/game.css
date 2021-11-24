@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+#game {
+  position: relative;
+}
+
 #game-screen {
   position: relative;
 }
@@ -76,4 +80,22 @@
 
 .no-display {
   display: none;
+}
+
+#score-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1rem;
+  background-color: bisque;
+  border: 2px solid black;
+  border-radius: 1rem;
+}
+
+#score-name {
+  margin: 1rem 0;
 }
