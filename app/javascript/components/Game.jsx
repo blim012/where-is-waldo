@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
 import Screen from "./Screen";
+import ScoreForm from "./ScoreForm";
 
 const Game = (props) => {
   const params = useParams();
@@ -11,6 +12,7 @@ const Game = (props) => {
   const [icons, setIcons] = useState({});
   const [screen, setScreen] = useState(null);
   const [found, setFound] = useState({Waldo: false, Wenda: false, Odlaw: false, Wizard: false});
+  const [win, setWin] = useState(false);
 
   useEffect(() => {
     axios.get(`/api/v1/waldo_screens/${params.screen_id}`)
@@ -47,7 +49,8 @@ const Game = (props) => {
 
   useEffect(() => {
     if(checkWin()) {
-      handleWin();
+      console.log('You win');
+      setWin(true);
     }
   }, [found]);
 
@@ -77,21 +80,36 @@ const Game = (props) => {
     return true;
   }
 
-  const handleWin = () => {
-    console.log('You win');
-    
+  const handleScoreSubmit = (e) => {
+    e.preventDefault();
+    let form = e.currentTarget;
+    const formData = new FormData(form);
+    const name = formData.get('score-name');
+    axios.post('/api/v1/scores', {seconds: seconds, name: name, waldo_screen_id: params.screen_id})
+    .then((response) => {
+      let data = response.data;
+      if(data.hasOwnProperty('errors')) {
+        console.log('error');
+      }
+      else console.log('success');
+    })
+    .catch((error) => {
+      // handle error
+    });
   }
 
   return (
     screen
       ?
       <div id="game">
-        <br /><br /><br />
         <p>Game Screen {params.screen_id}</p>
         <p>Seconds Elapsed: {seconds}</p>
         <button onClick={() => setLoaded(true)}>Start Time</button>
         <button onClick={() => setLoaded(false)}>Stop Time</button>
         <Screen screen={screen} icons={icons} checkSelection={checkSelection}/>
+        { true && 
+          <ScoreForm handleScoreSubmit={handleScoreSubmit} />
+        }
       </div>
 
       :
