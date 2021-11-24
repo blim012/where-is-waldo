@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
+import { Navigate } from 'react-router-dom';
 import axios from "axios";
 import Screen from "./Screen";
 import ScoreForm from "./ScoreForm";
@@ -13,6 +14,7 @@ const Game = (props) => {
   const [screen, setScreen] = useState(null);
   const [found, setFound] = useState({Waldo: false, Wenda: false, Odlaw: false, Wizard: false});
   const [win, setWin] = useState(false);
+  const [redirectHome, setRedirectHome] = useState(false);
 
   useEffect(() => {
     axios.get(`/api/v1/waldo_screens/${params.screen_id}`)
@@ -85,14 +87,15 @@ const Game = (props) => {
     let form = e.currentTarget;
     const formData = new FormData(form);
     const name = formData.get('score-name');
-    axios.post('/api/v1/scores', {waldo_screen_id: params.screen_id})
+    axios.post('/api/v1/scores', {seconds: seconds, name: name, waldo_screen_id: params.screen_id})
     .then((response) => {
       let data = response.data;
       if(data.hasOwnProperty('errors')) {
-        console.log('error');
         displayFormSubmitErrors(form, data.errors);
       }
-      else console.log('success');
+      else {
+        setRedirectHome(true);
+      }
     })
     .catch((error) => {
       // handle error
@@ -108,6 +111,8 @@ const Game = (props) => {
     }
   }
 
+  if(redirectHome) return <Navigate to="/" />
+
   return (
     screen
       ?
@@ -117,7 +122,7 @@ const Game = (props) => {
         <button onClick={() => setLoaded(true)}>Start Time</button>
         <button onClick={() => setLoaded(false)}>Stop Time</button>
         <Screen screen={screen} icons={icons} checkSelection={checkSelection}/>
-        { true && 
+        { win && 
           <ScoreForm handleScoreSubmit={handleScoreSubmit} />
         }
       </div>
