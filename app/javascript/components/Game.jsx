@@ -85,17 +85,27 @@ const Game = (props) => {
     let form = e.currentTarget;
     const formData = new FormData(form);
     const name = formData.get('score-name');
-    axios.post('/api/v1/scores', {seconds: seconds, name: name, waldo_screen_id: params.screen_id})
+    axios.post('/api/v1/scores', {waldo_screen_id: params.screen_id})
     .then((response) => {
       let data = response.data;
       if(data.hasOwnProperty('errors')) {
         console.log('error');
+        displayFormSubmitErrors(form, data.errors);
       }
       else console.log('success');
     })
     .catch((error) => {
       // handle error
     });
+  }
+
+  const displayFormSubmitErrors = (form, errors) => {
+    let formErrorElement = form.querySelector('.form-errors');
+    if(formErrorElement) {
+      formErrorElement.innerHTML = errors.reduce((msg, error) => {
+        return msg + error + "<br />";
+      }, 'Error:<br />');
+    }
   }
 
   return (
