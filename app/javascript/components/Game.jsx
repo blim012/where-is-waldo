@@ -8,7 +8,7 @@ import ScoreForm from "./ScoreForm";
 const Game = (props) => {
   const params = useParams();
   const [seconds, setSeconds] = useState(0);
-  const [loaded, setLoaded] = useState(false);
+  const [playing, setPlaying] = useState(false);
   const [positions, setPositions] = useState({});
   const [icons, setIcons] = useState({});
   const [screen, setScreen] = useState(null);
@@ -32,6 +32,7 @@ const Game = (props) => {
       setPositions(positionsToSet);
       setIcons(iconsToSet);
       setScreen(screenToSet);
+      setPlaying(true);
     })
     .catch((error) => {
       // Catch error here
@@ -40,14 +41,14 @@ const Game = (props) => {
 
   useEffect(() => {
     let interval = null;
-    if(loaded) {
+    if(playing) {
       interval = setInterval(() => {
         setSeconds(seconds + 1);
       }, 1000);
     }
 
     return () => clearInterval(interval);
-  }, [loaded, seconds]);
+  }, [playing, seconds]);
 
   useEffect(() => {
     if(checkWin()) {
@@ -79,6 +80,7 @@ const Game = (props) => {
     for(let i = 0; i < foundList.length; i++) {
       if(!foundList[i]) return false;
     }
+    setPlaying(false);
     return true;
   }
 
@@ -118,9 +120,7 @@ const Game = (props) => {
       ?
       <div id="game">
         <p>Game Screen {params.screen_id}</p>
-        <p>Seconds Elapsed: {seconds}</p>
-        <button onClick={() => setLoaded(true)}>Start Time</button>
-        <button onClick={() => setLoaded(false)}>Stop Time</button>
+        <p>Time: {seconds}</p>
         <Screen screen={screen} icons={icons} checkSelection={checkSelection}/>
         { win && 
           <ScoreForm handleScoreSubmit={handleScoreSubmit} />
