@@ -99,3 +99,8 @@
 #score-name {
   margin: 1rem 0;
 }
+
+.form-errors {
+  color: red;
+  margin-bottom: 1rem;
+}
