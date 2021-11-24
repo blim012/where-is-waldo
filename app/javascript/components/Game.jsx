@@ -33,9 +33,6 @@ const Game = (props) => {
       setIcons(iconsToSet);
       setScreen(screenToSet);
       setPlaying(true);
-    })
-    .catch((error) => {
-      // Catch error here
     });
   }, []);
 
@@ -121,7 +118,7 @@ const Game = (props) => {
       <div id="game">
         <p>Game Screen {params.screen_id}</p>
         <p>Time: {seconds}</p>
-        <Screen screen={screen} icons={icons} checkSelection={checkSelection}/>
+        <Screen screen={screen} icons={icons} win={win} checkSelection={checkSelection}/>
         { win && 
           <ScoreForm handleScoreSubmit={handleScoreSubmit} />
         }

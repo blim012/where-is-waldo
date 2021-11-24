@@ -5,8 +5,10 @@ const Screen = (props) => {
   const {id, name, image_url} = props.screen;
   const icons = props.icons;
   const checkSelection = props.checkSelection;
+  const win = props.win;
 
   const handleDropDown = (e) => {
+    if(win) return;
     let dropdown = document.querySelector('.dropdown');
     let screen = document.querySelector('#screen');
     if(!(dropdown && screen)) return;
