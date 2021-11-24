@@ -79,29 +79,26 @@ const Game = (props) => {
 
   const handleWin = () => {
     console.log('You win');
+    
   }
 
   return (
-    <div id="game">
-      {
-      screen
-        ?
-        <div>
-          <br /><br /><br />
-          <p>Game Screen {params.screen_id}</p>
-          <p>Seconds Elapsed: {seconds}</p>
-          <button onClick={() => setLoaded(true)}>Start Time</button>
-          <button onClick={() => setLoaded(false)}>Stop Time</button>
-          <Screen screen={screen} icons={icons} checkSelection={checkSelection}/>
-        </div>
+    screen
+      ?
+      <div id="game">
+        <br /><br /><br />
+        <p>Game Screen {params.screen_id}</p>
+        <p>Seconds Elapsed: {seconds}</p>
+        <button onClick={() => setLoaded(true)}>Start Time</button>
+        <button onClick={() => setLoaded(false)}>Stop Time</button>
+        <Screen screen={screen} icons={icons} checkSelection={checkSelection}/>
+      </div>
 
-        :
-        <div className="loading">
-              <br /><br />
-              Loading...
-        </div>
-      }
-    </div>
+      :
+      <div className="loading">
+            <br /><br />
+            Loading...
+      </div>
   );
 };
 
