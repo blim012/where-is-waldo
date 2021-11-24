@@ -36,7 +36,7 @@ const Screen = (props) => {
   };
 
   return (
-    <div id="game-screen" onClick={handleDropDown}>
+    <div id="game-screen" onClick={handleDropDown} className={win ? 'greyscale-60' : ''}>
       <div className="dropdown no-display">
         <div className="dropdown-rel-wrapper">
           <div className="crosshair crosshair-inner"></div>

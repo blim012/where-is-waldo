@@ -104,3 +104,7 @@
   color: red;
   margin-bottom: 1rem;
 }
+
+.greyscale-60 {
+  filter: grayscale(60%);
+}
