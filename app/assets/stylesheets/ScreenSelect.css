@@ -13,7 +13,7 @@
 
 .screen-thumbnail {
   position: relative;
-  width: 600px;
+  max-width: 600px;
 }
 
 .screen-thumbnail:hover {
