@@ -4,6 +4,7 @@ import axios from "axios";
 import uniqid from 'uniqid';
 import ScreenThumbnail from "./ScreenThumbnail";
 import ScreenScores from "./ScreenScores";
+import Header from "./Header";
 
 const ScreenSelect = () => {
   const [screens, setScreens] = useState(null);
@@ -23,6 +24,7 @@ const ScreenSelect = () => {
     screens 
       ? 
       <div className="screen-select-container">
+        <Header />
         <ul className="screen-select">
           {screens.map((screen) => {
             return (

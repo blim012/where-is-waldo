@@ -22,6 +22,10 @@
   box-shadow: 0 5px 15px grey;
 }
 
+.screen-container:first-child {
+  margin-top: 100px;
+}
+
 .screen-thumbnail {
   position: relative;
   max-width: 600px;
