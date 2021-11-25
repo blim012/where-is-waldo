@@ -76,7 +76,7 @@ const Screen = (props) => {
     let [xPercentage, yPercentage] = convertOffsetToPercent(clickOffsetX, clickOffsetY); 
     if(checkSelection(key, xPercentage, yPercentage)) {
       let foundCirclesToSet = [...foundCircles];
-      foundCirclesToSet.push(<FoundCircle x={clickOffsetX} y={clickOffsetY} />)
+      foundCirclesToSet.push(<FoundCircle x={clickOffsetX} y={clickOffsetY} key={uniqid('circle-')} />)
       setFoundCircles(foundCirclesToSet);
     }
   };
