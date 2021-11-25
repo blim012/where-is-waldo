@@ -5,6 +5,7 @@ import axios from "axios";
 import Screen from "./Screen";
 import ScoreForm from "./ScoreForm";
 import Header from "./Header";
+import Loading from "./Loading";
 
 const Game = (props) => {
   const params = useParams();
@@ -131,10 +132,7 @@ const Game = (props) => {
         </div>
 
         :
-        <div className="loading">
-              <br /><br />
-              Loading...
-        </div>
+        <Loading />
       }
     </div>
   );
