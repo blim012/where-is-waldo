@@ -65,8 +65,11 @@ const Game = (props) => {
        (yPercentage <= upperRangeY && yPercentage >= lowerRangeY)) {
       console.log(`${character} has been found`);
       let foundToSet = {...found};
+      let iconsToSet = {...icons};
       foundToSet[character] = true;
+      delete iconsToSet[character];
       setFound(foundToSet);
+      setIcons(iconsToSet);
       return true;
     }
     return false;
