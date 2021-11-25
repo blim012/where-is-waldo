@@ -16,9 +16,6 @@ const ScreenSelect = () => {
       let data = response.data;
       setScreens(data);
     })
-    .catch((error) => {
-      // Error handle here
-    })
   }, []);
 
   return (

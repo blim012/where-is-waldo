@@ -51,7 +51,6 @@ const Game = (props) => {
 
   useEffect(() => {
     if(checkWin()) {
-      console.log('You win');
       setWin(true);
     }
   }, [found]);
@@ -65,7 +64,6 @@ const Game = (props) => {
     const lowerRangeY = positions[character].y_pos - errorMargin;
     if((xPercentage <= upperRangeX && xPercentage >= lowerRangeX) &&
        (yPercentage <= upperRangeY && yPercentage >= lowerRangeY)) {
-      console.log(`${character} has been found`);
       let foundToSet = {...found};
       let iconsToSet = {...icons};
       foundToSet[character] = true;
@@ -101,9 +99,6 @@ const Game = (props) => {
         setRedirectHome(true);
       }
     })
-    .catch((error) => {
-      // handle error
-    });
   }
 
   const displayFormSubmitErrors = (form, errors) => {
