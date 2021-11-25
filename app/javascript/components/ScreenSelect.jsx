@@ -22,16 +22,18 @@ const ScreenSelect = () => {
   return (
     screens 
       ? 
-      <ul className="screen-select">
-        {screens.map((screen) => {
-          return (
-            <li className="screen-container" key={uniqid('screen-')}>
-              <ScreenThumbnail id={screen.id} name={screen.name} image_url={screen.image_url} />
-              <ScreenScores scores={screen.scores} />
-            </li>
-          )
-        })}
-      </ul>
+      <div className="screen-select-container">
+        <ul className="screen-select">
+          {screens.map((screen) => {
+            return (
+              <li className="screen-container" key={uniqid('screen-')}>
+                <ScreenThumbnail id={screen.id} name={screen.name} image_url={screen.image_url} />
+                <ScreenScores scores={screen.scores} />
+              </li>
+            )
+          })}
+        </ul>
+      </div>
 
       : 
       <div className="loading">

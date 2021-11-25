@@ -1,3 +1,7 @@
+.screen-select-container {
+  background-color: #e9fff9;
+}
+
 .screen-select {
   display: flex;
   flex-direction: column;
@@ -8,7 +12,14 @@
   display: flex;
   justify-content: center;
   padding: 2rem;
-  border: 1px black solid;
+  margin: 2rem 0;
+  border-radius: 1rem;
+  box-shadow: 0 5px 8px grey;
+  transition: box-shadow 0.3s ease;
+}
+
+.screen-container:hover {
+  box-shadow: 0 5px 15px grey;
 }
 
 .screen-thumbnail {
