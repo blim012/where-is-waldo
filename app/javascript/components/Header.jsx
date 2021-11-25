@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import uniqid from 'uniqid';
 
 const Header = (props) => {
   const headerText = props.headerText;
@@ -10,9 +11,11 @@ const Header = (props) => {
         <p>Where's Waldo</p>
       </Link>
       {headerText && headerText.map((text) => {
-        <div className="header-text header-item">
-          <p>{text}</p>
-        </div>
+        return (
+          <div className="header-text header-item" key={uniqid('header-')}>
+            <p>{text}</p>
+          </div>
+        )
       })}
     </header>
   )

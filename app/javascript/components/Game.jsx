@@ -4,6 +4,7 @@ import { Navigate } from 'react-router-dom';
 import axios from "axios";
 import Screen from "./Screen";
 import ScoreForm from "./ScoreForm";
+import Header from "./Header";
 
 const Game = (props) => {
   const params = useParams();
@@ -116,22 +117,26 @@ const Game = (props) => {
   if(redirectHome) return <Navigate to="/" />
 
   return (
-    screen
-      ?
-      <div id="game">
-        <p>Game Screen {params.screen_id}</p>
-        <p>Time: {seconds}</p>
-        <Screen screen={screen} icons={icons} win={win} checkSelection={checkSelection}/>
-        { win && 
-          <ScoreForm handleScoreSubmit={handleScoreSubmit} />
-        }
-      </div>
+    <div id="game-container">
+      <Header headerText={[`Time: ${seconds}`]}/>
 
-      :
-      <div className="loading">
-            <br /><br />
-            Loading...
-      </div>
+      {
+      screen
+        ?
+        <div id="game">
+          <Screen screen={screen} icons={icons} win={win} checkSelection={checkSelection}/>
+          { win && 
+            <ScoreForm handleScoreSubmit={handleScoreSubmit} />
+          }
+        </div>
+
+        :
+        <div className="loading">
+              <br /><br />
+              Loading...
+        </div>
+      }
+    </div>
   );
 };
 
