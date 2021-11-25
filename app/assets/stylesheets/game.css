@@ -37,6 +37,10 @@
   opacity: 30%;
 }
 
+.dropdown {
+  z-index: 9999;
+}
+
 .dropdown-list {
   position: absolute;
   display: flex;
