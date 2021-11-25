@@ -64,16 +64,13 @@ const Screen = (props) => {
     }
   }
 
-  // TODO: refactor to use convertOffsetToPercent
   const handleSelection = (key) => {
     let dropdown = document.querySelector('.dropdown');
-    let screen = document.querySelector('#screen');
-    if(!(dropdown && screen)) return;
+    if(!dropdown) return;
     let clickOffsetX = dropdown.getAttribute('data-x');
     let clickOffsetY = dropdown.getAttribute('data-y');
     if(!(clickOffsetX && clickOffsetY)) return;
-    let xPercentage = clickOffsetX / screen.offsetWidth;
-    let yPercentage = clickOffsetY / screen.offsetHeight;
+    let [xPercentage, yPercentage] = convertOffsetToPercent(clickOffsetX, clickOffsetY); 
     checkSelection(key, xPercentage, yPercentage);
   };
 
