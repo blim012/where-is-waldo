@@ -1,0 +1,17 @@
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+@keyframes loading {
+  from {color: black}
+  to {color: #d64045}
+}
+
+.loading {
+  font-size: 3rem;
+  animation: loading 1s ease 0s infinite alternate;
+}
