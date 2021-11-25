@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const ScreenThumbnail = (props) => {
   return (
-    <Link to={'/play/' + props.id} style={{ color: 'black' }}>
+    <Link to={'/play/' + props.id}>
       <div className="screen-thumbnail">
         <div className="screen-name">
           <p>{props.name}</p>
