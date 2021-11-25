@@ -1,7 +1,10 @@
 import React from "react";
+import { useState } from "react";
 import uniqid from 'uniqid';
+import FoundCircle from "./FoundCircle";
 
 const Screen = (props) => {
+  const [foundCircles, setFoundCircles] = useState([]);
   const {id, name, image_url} = props.screen;
   const icons = props.icons;
   const checkSelection = props.checkSelection;
@@ -71,7 +74,11 @@ const Screen = (props) => {
     let clickOffsetY = dropdown.getAttribute('data-y');
     if(!(clickOffsetX && clickOffsetY)) return;
     let [xPercentage, yPercentage] = convertOffsetToPercent(clickOffsetX, clickOffsetY); 
-    checkSelection(key, xPercentage, yPercentage);
+    if(checkSelection(key, xPercentage, yPercentage)) {
+      let foundCirclesToSet = [...foundCircles];
+      foundCirclesToSet.push(<FoundCircle x={clickOffsetX} y={clickOffsetY} />)
+      setFoundCircles(foundCirclesToSet);
+    }
   };
 
   const convertOffsetToPercent = (clickOffsetX, clickOffsetY) => {
@@ -100,6 +107,7 @@ const Screen = (props) => {
         </div>
       </div>
       <img id="screen" src={image_url} alt="Oops, something went wrong! Game screen cannot load." />
+      {foundCircles}
     </div>
   );
 };
