@@ -5,6 +5,7 @@ import uniqid from 'uniqid';
 import ScreenThumbnail from "./ScreenThumbnail";
 import ScreenScores from "./ScreenScores";
 import Header from "./Header";
+import Loading from "./Loading";
 
 const ScreenSelect = () => {
   const [screens, setScreens] = useState(null);
@@ -38,10 +39,7 @@ const ScreenSelect = () => {
       </div>
 
       : 
-      <div className="loading">
-        <br /><br />
-        Loading...
-      </div>
+      <Loading />
   );
 };
 
