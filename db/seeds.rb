@@ -13,7 +13,6 @@ Character.create(name: 'Odlaw', image_url: 'odlaw.png')
 Score.create(seconds: 30, name: 'bob', waldo_screen_id: 1)
 Score.create(seconds: 1, name: 'fast', waldo_screen_id: 1)
 Score.create(seconds: 123, name: 'slow', waldo_screen_id: 1)
-Score.create(seconds: 2, name: 'Looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong', waldo_screen_id: 1)
 
 Score.create(seconds: 20, name: 'bob but better', waldo_screen_id: 2)
 Score.create(seconds: 11, name: 'fast-ish', waldo_screen_id: 2)
