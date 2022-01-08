@@ -1,24 +1,5 @@
-# README
+# Where Is Waldo
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A recreation of the game Where's Waldo. Created using Rails and React for the backend and frontend, respectively, as well as PostgreSQL for the database. The Rails backend is primarily used to send data, such as character positions and scores, to the frontend via calls to their respective APIs.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+[Play it here](http://search-for-waldo.herokuapp.com/)
